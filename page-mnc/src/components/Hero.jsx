@@ -25,13 +25,13 @@ export default function Hero() {
 				<div className="flex gap-4 justify-center mt-6">
 					<a
 						href="#missao"
-						className="bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700"
+						className="bg-[#2563eb] text-white px-5 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300"
 					>
 						Conheça Nossa Missão
 					</a>
 					<a
 						href="#contato"
-						className="border border-white px-5 py-2 rounded-md hover:bg-white hover:text-primary"
+						className="border border-white px-5 py-2 rounded-md hover:bg-white hover:text-[#2563eb] transition-colors duration-300"
 					>
 						Entre em Contato
 					</a>
