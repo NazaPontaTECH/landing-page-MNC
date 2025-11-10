@@ -1,2 +1,17 @@
 @import "tailwindcss";
+
+/* Importa os estilos base do Preline */
 @import "preline/variants.css";
+
+/* Cores personalizadas usando CSS custom properties */
+:root {
+  --color-primary: #2563eb;
+  --color-dark: #111827;
+}
+
+/* Classes utilitárias personalizadas */
+.text-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+.border-primary { border-color: var(--color-primary); }
+.text-dark { color: var(--color-dark); }
+.bg-dark { background-color: var(--color-dark); }

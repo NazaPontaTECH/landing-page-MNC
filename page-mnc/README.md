@@ -34,18 +34,16 @@ yarn install
 ```
 
 ### 3. Configure as cores do projeto
-No arquivo `tailwind.config.js`, você pode personalizar as cores primária e secundária:
+No arquivo `src/index.css`, você pode personalizar as cores primária e secundária:
 
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: "#1E3A8A",   // Azul - altere conforme sua identidade visual
-      secondary: "#FBBF24", // Amarelo - altere conforme sua identidade visual
-    },
-  },
+```css
+:root {
+  --color-primary: #2563eb;   // Azul - altere conforme sua identidade visual
+  --color-dark: #111827;      // Escuro - altere conforme sua identidade visual
 }
 ```
+
+**Nota:** Este projeto usa **Tailwind CSS v4**, que não requer arquivo `tailwind.config.js`. A configuração é feita diretamente no CSS.
 
 ## ⚡ Scripts Disponíveis
 
@@ -78,28 +76,51 @@ page-mnc/
 ├── src/
 │   ├── assets/            # Imagens, ícones e outros recursos
 │   ├── components/        # Componentes reutilizáveis
-│   │   └── Button/        # Componente de botão
-│   │       └── index.jsx
+│   │   ├── About.jsx      # Componente Sobre
+│   │   ├── Contact.jsx    # Componente Contato
+│   │   ├── Footer.jsx     # Componente Footer
+│   │   ├── Hero.jsx       # Componente Hero
+│   │   ├── Mission.jsx    # Componente Missão
+│   │   └── Navbar.jsx     # Componente Navbar
 │   ├── pages/             # Páginas da aplicação
 │   │   └── index.jsx      # Página principal
-│   ├── index.css          # Estilos globais e imports do Tailwind
+│   ├── index.css          # Estilos globais e configuração do Tailwind CSS v4
 │   └── main.jsx           # Ponto de entrada da aplicação
 ├── index.html             # Template HTML
 ├── package.json           # Dependências e scripts
-├── tailwind.config.js     # Configuração do Tailwind CSS
 ├── vite.config.js         # Configuração do Vite
 └── eslint.config.js       # Configuração do ESLint
 ```
 
 ## 🎨 Estilização
 
-O projeto utiliza **Tailwind CSS** como framework principal de estilização:
+O projeto utiliza **Tailwind CSS v4** como framework principal de estilização:
 
-- **Tailwind CSS v4**: Framework CSS utilitário
-- **Preline**: Biblioteca de componentes pré-construídos
-- **Configuração customizada**: Cores e tema personalizados
+- **Tailwind CSS v4**: Framework CSS utilitário com nova arquitetura
+- **Preline 3.2.3**: Biblioteca de componentes pré-construídos
+- **Configuração via CSS**: Cores e tema personalizados diretamente no CSS
 
-### Exemplo de uso do Tailwind:
+**Principais diferenças do Tailwind CSS v4:**
+- ❌ Não precisa de arquivo `tailwind.config.js`
+- ✅ Configuração feita via `@import "tailwindcss"` no CSS
+- ✅ Cores customizadas usando CSS custom properties
+- ✅ Plugin do Vite para integração automática
+
+### Configuração de cores personalizadas
+
+```css
+/* src/index.css */
+:root {
+  --color-primary: #2563eb;
+  --color-dark: #111827;
+}
+
+.bg-primary { background-color: var(--color-primary); }
+.text-primary { color: var(--color-primary); }
+```
+
+### Exemplo de uso do Tailwind
+
 ```jsx
 <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
   Botão Personalizado
@@ -117,11 +138,16 @@ O projeto inclui configuração do ESLint com:
 
 ## 📱 Componentes
 
-O projeto é organizado com componentes reutilizáveis:
+O projeto é organizado com componentes reutilizáveis para a landing page:
 
-- **Button**: Componente de botão customizado
-- **Pages**: Estrutura de páginas
-- Arquitetura modular para fácil manutenção
+- **Navbar**: Navegação principal com logo e menu
+- **Hero**: Seção principal com banner e call-to-action  
+- **About**: Seção sobre o ministério e história
+- **Mission**: Missão, visão e valores da organização
+- **Contact**: Formulário de contato e informações
+- **Footer**: Rodapé com links e informações de contato
+
+Arquitetura modular para fácil manutenção e expansão.
 
 ## 🚀 Deploy
 
@@ -156,7 +182,14 @@ Se você encontrar algum problema ou tiver dúvidas:
 1. Verifique se todas as dependências estão instaladas corretamente
 2. Certifique-se de estar usando Node.js 16+
 3. Limpe o cache: `rm -rf node_modules package-lock.json && npm install`
-4. Abra uma issue no repositório
+4. **Importante**: Este projeto usa **Tailwind CSS v4** - não tente criar `tailwind.config.js`
+5. Abra uma issue no repositório
+
+### Problemas Comuns
+
+- **Erro "could not determine executable to run"**: Não execute `npx tailwindcss init` no Tailwind CSS v4
+- **Estilos não carregam**: Verifique se o `@import "tailwindcss"` está no `src/index.css`
+- **Componentes Preline não funcionam**: Verifique se o script está carregado no `index.html`
 
 ## 📚 Recursos Úteis
 
