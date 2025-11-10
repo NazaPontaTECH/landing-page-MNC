@@ -4,6 +4,7 @@ import About from "../components/About"
 import Mission from "../components/Mission"
 import Contact from "../components/Contact"
 import Footer from "../components/Footer"
+import ScrollToTop from "../components/ScrollToTop"
 
 export default function PageMNC() {
   return (
@@ -16,6 +17,7 @@ export default function PageMNC() {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   )
 }

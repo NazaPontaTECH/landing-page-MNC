@@ -3,6 +3,27 @@
 /* Importa os estilos base do Preline */
 @import "preline/variants.css";
 
+/* Smooth scrolling global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animação personalizada para o botão de voltar ao topo */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-8px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
 /* Cores personalizadas usando CSS custom properties */
 :root {
   --color-primary: #2563eb;

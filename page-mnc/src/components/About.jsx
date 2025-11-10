@@ -1,68 +1,176 @@
 import aboutImg from "../assets/about.jpg";
+import { motion } from 'framer-motion';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function About() {
+  const { staggerContainer, fadeInUp, fadeInLeft, staggerChild } = useScrollAnimation();
+
   return (
-    <section id="sobre" className="bg-gray-50 py-20 px-6">
-      <div className="container mx-auto max-w-6xl">
+    <motion.section 
+      id="sobre" 
+      className="bg-gray-50 py-20 px-6"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      <motion.div 
+        className="container mx-auto max-w-5xl"
+        variants={staggerChild}
+      >
         {/* Header da seção */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Sobre Nós</h2>
+        <motion.div 
+          className="text-center mb-16"
+          variants={staggerChild}
+        >
+          <motion.h2 
+            className="text-4xl font-bold text-gray-900 mb-4"
+            variants={staggerChild}
+          >
+            Sobre Nós
+          </motion.h2>
           
           {/* Barrinha divisória azul */}
-          <div className="flex justify-center mb-6">
-            <div className="w-24 h-1 bg-primary rounded-full"></div>
-          </div>
+          <motion.div 
+            className="flex justify-center mb-6"
+            variants={staggerChild}
+          >
+            <motion.div 
+              className="w-24 h-1 bg-primary rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            ></motion.div>
+          </motion.div>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            variants={staggerChild}
+          >
             O Ministério de Compaixão é um braço de ação social da Igreja do Nazareno, expressando o amor de Deus através de ações práticas e transformadoras.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Grid principal - História + Imagem */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-1 h-12 bg-primary rounded-full"></div>
+        <motion.div 
+          className="grid lg:grid-cols-2 gap-12 items-center mb-16"
+          variants={staggerContainer}
+        >
+          <motion.div 
+            className="space-y-6"
+            variants={fadeInLeft}
+          >
+            <motion.div 
+              className="flex items-center gap-3 mb-6"
+              variants={staggerChild}
+            >
+              <motion.div 
+                className="w-1 h-12 bg-primary rounded-full"
+                initial={{ height: 0 }}
+                whileInView={{ height: 48 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              ></motion.div>
               <h3 className="text-2xl font-bold text-gray-900">Nossa História</h3>
-            </div>
+            </motion.div>
             
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <motion.p 
+              className="text-gray-600 text-lg leading-relaxed"
+              variants={staggerChild}
+            >
               Há mais de um século, a Igreja do Nazareno tem sido reconhecida por servir aos mais vulneráveis. Iniciamos nossa jornada em 1908 com o compromisso de levar esperança e dignidade às comunidades que mais precisam.
-            </p>
+            </motion.p>
 
-            <p className="text-gray-600 leading-relaxed">
+            <motion.p 
+              className="text-gray-600 leading-relaxed"
+              variants={staggerChild}
+            >
               Atuamos com programas educacionais, saúde comunitária e projetos de desenvolvimento social em diversas regiões do Brasil, sempre guiados pelos princípios cristãos de amor, compaixão e serviço ao próximo.
-            </p>
+            </motion.p>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl font-bold text-primary mb-1">115+</div>
+            <motion.div 
+              className="grid grid-cols-2 gap-4 mt-8"
+              variants={staggerContainer}
+            >
+              <motion.div 
+                className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow"
+                variants={staggerChild}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-primary mb-1"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  115+
+                </motion.div>
                 <div className="text-sm text-gray-600">Anos de História</div>
-              </div>
-              <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl font-bold text-primary mb-1">1000+</div>
+              </motion.div>
+              <motion.div 
+                className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow"
+                variants={staggerChild}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-primary mb-1"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                >
+                  1000+
+                </motion.div>
                 <div className="text-sm text-gray-600">Famílias Impactadas</div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3"></div>
-            <img 
+          <motion.div 
+            className="relative"
+            variants={fadeInLeft}
+          >
+            <motion.div 
+              className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3"
+              initial={{ rotate: 0, opacity: 0 }}
+              whileInView={{ rotate: 3, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            ></motion.div>
+            <motion.img 
               src={aboutImg} 
               alt="Voluntários em ação" 
               className="relative rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full h-auto object-cover"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* FAQ/Accordion Section */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Perguntas Frequentes</h3>
-            <p className="text-gray-600">Saiba mais sobre nossa missão e atuação</p>
-          </div>
+        <motion.div 
+          className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div 
+            className="text-center mb-8"
+            variants={staggerChild}
+          >
+            <motion.h3 
+              className="text-2xl font-bold text-gray-900 mb-2"
+              variants={fadeInUp}
+            >
+              Perguntas Frequentes
+            </motion.h3>
+            <motion.p 
+              className="text-gray-600"
+              variants={fadeInUp}
+            >
+              Saiba mais sobre nossa missão e atuação
+            </motion.p>
+          </motion.div>
 
           <div className="hs-accordion-group max-w-4xl mx-auto space-y-4">
             {/* Pergunta 1 */}
@@ -164,8 +272,8 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }

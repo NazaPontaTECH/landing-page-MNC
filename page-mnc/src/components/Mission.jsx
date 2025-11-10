@@ -1,8 +1,19 @@
 import { Target, Eye, Gem, Heart, Users, Star, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Mission() {
+  const { staggerContainer, fadeInUp, staggerChild, fadeInLeft } = useScrollAnimation()
+
   return (
-    <section id="missao" className="relative bg-dark text-white py-24 px-6 overflow-hidden">
+    <motion.section 
+      id="missao" 
+      className="relative bg-dark text-white py-24 px-6 overflow-hidden"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-20 w-32 h-32 border border-white rounded-full"></div>
@@ -10,25 +21,49 @@ export default function Mission() {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-white rounded-full"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <motion.div 
+        className="container mx-auto max-w-5xl relative z-10"
+        variants={staggerChild}
+      >
         {/* Header da seção */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Nossos Fundamentos</h2>
+        <motion.div 
+          className="text-center mb-20"
+          variants={staggerChild}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6"
+            variants={fadeInUp}
+          >
+            Nossos Fundamentos
+          </motion.h2>
 
           {/* Barrinha divisória azul */}
-          <div className="flex justify-center mb-6">
+          <motion.div 
+            className="flex justify-center mb-6"
+            variants={fadeInUp}
+          >
             <div className="w-24 h-1 bg-primary rounded-full"></div>
-          </div>
-          
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          </motion.div>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            variants={fadeInUp}
+          >
             Conheça os valores que nos guiam há mais de 115 anos na missão de transformar vidas através do amor de Cristo.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Grid principal - Cards MVV */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+        <motion.div 
+          className="grid lg:grid-cols-3 gap-8 mb-20"
+          variants={staggerChild}
+        >
           {/* Card Missão */}
-          <div className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100">
+          <motion.div 
+            className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-bl-2xl"></div>
             
             <div className="relative z-10">
@@ -59,10 +94,15 @@ export default function Mission() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card Visão */}
-          <div className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100">
+          <motion.div 
+            className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500/5 rounded-bl-2xl"></div>
             
             <div className="relative z-10">
@@ -93,10 +133,15 @@ export default function Mission() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card Valores */}
-          <div className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100">
+          <motion.div 
+            className="group relative bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/5 rounded-bl-2xl"></div>
             
             <div className="relative z-10">
@@ -131,9 +176,9 @@ export default function Mission() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }

@@ -1,28 +1,67 @@
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { motion } from 'framer-motion'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Contact() {
+  const { staggerContainer, fadeInUp, staggerChild, fadeInLeft } = useScrollAnimation()
+
   return (
-    <section id="contato" className="bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
+    <motion.section 
+      id="contato" 
+      className="bg-gradient-to-br from-gray-50 to-blue-50 py-20 px-6"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      <motion.div 
+        className="container mx-auto max-w-5xl"
+        variants={staggerChild}
+      >
         {/* Header da seção */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
+        <motion.div 
+          className="text-center mb-16"
+          variants={staggerChild}
+        >
+          <motion.h2 
+            className="text-4xl font-bold text-gray-900 mb-4"
+            variants={fadeInUp}
+          >
+            Entre em Contato
+          </motion.h2>
           
           {/* Barrinha divisória azul */}
-          <div className="flex justify-center mb-6">
+          <motion.div 
+            className="flex justify-center mb-6"
+            variants={fadeInUp}
+          >
             <div className="w-24 h-1 bg-primary rounded-full"></div>
-          </div>
+          </motion.div>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <motion.p 
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            variants={fadeInUp}
+          >
             Estamos prontos para ouvir você. Fale conosco para saber mais sobre nosso trabalho ou como você pode fazer parte dessa missão.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid lg:grid-cols-3 gap-8"
+          variants={staggerChild}
+        >
           {/* Cards de Contato */}
-          <div className="lg:col-span-1 space-y-6">
+          <motion.div 
+            className="lg:col-span-1 space-y-6"
+            variants={staggerChild}
+          >
             {/* Telefone */}
-            <div className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <motion.div 
+              className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+              variants={fadeInLeft}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-700 transition-colors">
                   <Phone className="text-white text-xl" />
@@ -33,10 +72,15 @@ export default function Contact() {
                   <p className="text-sm text-gray-500">Seg à Sex, 8h às 17h</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* E-mail */}
-            <div className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <motion.div 
+              className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+              variants={fadeInLeft}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-700 transition-colors">
                   <Mail className="text-white text-xl" />
@@ -47,10 +91,15 @@ export default function Contact() {
                   <p className="text-sm text-gray-500">Respondemos em 24h</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Endereço */}
-            <div className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <motion.div 
+              className="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+              variants={fadeInLeft}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-700 transition-colors">
                   <MapPin className="text-white text-xl" />
@@ -61,10 +110,15 @@ export default function Contact() {
                   <p className="text-gray-600">São Paulo, SP - CEP 01234-567</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Horário de Atendimento */}
-            <div className="bg-primary text-white p-6 rounded-2xl">
+            <motion.div 
+              className="bg-primary text-white p-6 rounded-2xl"
+              variants={fadeInLeft}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h3 className="font-semibold mb-3 text-lg">Horário de Atendimento</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -80,11 +134,14 @@ export default function Contact() {
                   <span>Fechado</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Formulário de Contato */}
-          <div className="lg:col-span-2">
+          <motion.div 
+            className="lg:col-span-2"
+            variants={fadeInUp}
+          >
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Envie sua Mensagem</h3>
@@ -213,9 +270,9 @@ export default function Contact() {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }

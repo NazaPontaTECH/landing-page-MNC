@@ -1,13 +1,32 @@
 import { Heart, Instagram, Facebook, Youtube, Mail, Phone, MapPin, MailCheck } from 'lucide-react';
+import { motion } from 'framer-motion'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Footer() {
-	return (
-		<footer className="bg-dark text-gray-400">
+  const { staggerContainer, fadeInUp, staggerChild } = useScrollAnimation()
+
+  return (
+    <motion.footer 
+      className="bg-dark text-gray-400"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
 			{/* Footer principal */}
-			<div className="container mx-auto px-6 py-16">
-				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+			<motion.div 
+        className="container mx-auto max-w-5xl px-6 py-16"
+        variants={staggerChild}
+      >
+				<motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerChild}
+        >
 					{/* Coluna 1 - Sobre */}
-					<div className="space-y-4">
+					<motion.div 
+            className="space-y-4"
+            variants={fadeInUp}
+          >
 						<div className="flex items-center gap-3 mb-6">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-[#2174FF] rounded-full">
                 <Heart
@@ -53,10 +72,12 @@ export default function Footer() {
 								<Mail className='w-5 h-5'/>
 							</a>
 						</div>
-					</div>
+					</motion.div>
 
 					{/* Coluna 2 - Links Rápidos */}
-					<div>
+					<motion.div
+            variants={fadeInUp}
+          >
 						<h4 className="text-white font-semibold text-lg mb-6">
 							Links Rápidos
 						</h4>
@@ -98,57 +119,13 @@ export default function Footer() {
 								</span>
 							</a>
 						</nav>
-					</div>
-
-					{/* Coluna 3 - Contato */}
-					<div>
-						<h4 className="text-white font-semibold text-lg mb-6">Contato</h4>
-						<div className="space-y-4">
-							<div className="flex items-start gap-3">
-								<div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-									<Mail className="h-5 w-5 text-sm" />
-								</div>
-								<div>
-									<p className="text-sm text-white font-medium">E-mail</p>
-									<a
-										href="mailto:contato@mcnazareno.org.br"
-										className="text-sm hover:text-primary transition-colors"
-									>
-										contato@mcnazareno.org.br
-									</a>
-								</div>
-							</div>
-
-							<div className="flex items-start gap-3">
-								<div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-									<Phone className="h-5 w-5 text-sm" />
-								</div>
-								<div>
-									<p className="text-sm text-white font-medium">Telefone</p>
-									<a
-										href="tel:+5511123456789"
-										className="text-sm hover:text-primary transition-colors"
-									>
-										(11) 1234-5678
-									</a>
-								</div>
-							</div>
-
-							<div className="flex items-start gap-3">
-								<div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-									<MapPin className="h-5 w-5 text-sm" />
-								</div>
-								<div>
-									<p className="text-sm text-white font-medium">Endereço</p>
-									<p className="text-sm">Rua da Compaixão, 123</p>
-									<p className="text-sm">São Paulo, SP - 01234-567</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					</motion.div>
 
 					{/* Coluna 4 - Newsletter */}
-					<div>
+					{/* Coluna 3 - Newsletter */}
+					<motion.div
+            variants={fadeInUp}
+          >
 						<h4 className="text-white font-semibold text-lg mb-6">
 							Newsletter
 						</h4>
@@ -178,12 +155,15 @@ export default function Footer() {
 						<p className="text-xs text-gray-500 mt-3">
 							Não enviamos spam. Você pode cancelar a qualquer momento.
 						</p>
-					</div>
-				</div>
-			</div>
+					</motion.div>
+				</motion.div>
+			</motion.div>
 
 			{/* Footer inferior */}
-			<div className="border-t border-gray-700">
+			<motion.div 
+        className="border-t border-gray-700"
+        variants={fadeInUp}
+      >
 				<div className="container mx-auto px-6 py-6">
 					<div className="flex flex-col md:flex-row justify-between items-center gap-4">
 						<div className="flex flex-col md:flex-row items-center gap-4 text-sm">
@@ -207,7 +187,7 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
-			</div>
-		</footer>
-	);
+			</motion.div>
+		</motion.footer>
+	)
 }
