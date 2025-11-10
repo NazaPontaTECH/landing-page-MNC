@@ -4,5 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/landing-page-MNC/",
   plugins: [react(), tailwindcss()],
 })

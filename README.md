@@ -2,6 +2,8 @@
 
 Landing page moderna e responsiva desenvolvida para o **Ministério de Compaixão da Igreja do Nazareno**, com foco em apresentar a missão, história e formas de contato da organização.
 
+> 🚀 **Projeto configurado para GitHub Pages** com deploy automático e otimizações de performance.
+
 ## ✨ Funcionalidades Principais
 
 - **📱 Design Responsivo**: Adaptável para desktop, tablet e mobile
@@ -17,10 +19,11 @@ Landing page moderna e responsiva desenvolvida para o **Ministério de Compaixã
 - **React 19.1.1** - Biblioteca JavaScript para construção de interfaces de usuário
 - **Vite 7.1.7** - Build tool rápida e moderna para desenvolvimento
 - **Tailwind CSS 4.1.17** - Framework CSS utilitário para estilização
-- **Framer Motion 12.1.4** - Biblioteca de animações para React
+- **Framer Motion 12.23.24** - Biblioteca de animações para React
 - **Preline 3.2.3** - Biblioteca de componentes UI para Tailwind CSS
-- **Lucide React** - Ícones modernos e consistentes
-- **ESLint** - Ferramenta de linting para manter a qualidade do código
+- **Lucide React 0.553.0** - Ícones modernos e consistentes
+- **ESLint 9.36.0** - Ferramenta de linting para manter a qualidade do código
+- **GitHub Pages** - Deploy automatizado para hospedagem
 
 ## 📋 Pré-requisitos
 
@@ -36,7 +39,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 ```bash
 git clone https://github.com/NazaPontaTECH/landing-page-MNC.git
-cd landing-page-MNC/page-mnc
+cd landing-page-MNC
 ```
 
 ### 2. Instale as dependências
@@ -71,24 +74,28 @@ No arquivo `src/index.css`, você pode personalizar as cores:
 ## 📦 Dependências Principais
 
 ### **Produção**
+
 - **react** ^19.1.1 - Biblioteca principal
 - **react-dom** ^19.1.1 - Renderização DOM
-- **framer-motion** - Animações e transições
-- **lucide-react** - Biblioteca de ícones
+- **framer-motion** ^12.23.24 - Animações e transições
+- **lucide-react** ^0.553.0 - Biblioteca de ícones
 - **preline** ^3.2.3 - Componentes UI
-
-### **Desenvolvimento**  
-- **vite** ^7.1.7 - Build tool e servidor dev
-- **@vitejs/plugin-react** - Plugin React para Vite
 - **tailwindcss** ^4.1.17 - Framework CSS
-- **@tailwindcss/vite** - Plugin Vite para Tailwind v4
-- **eslint** - Linting de código
+
+### **Desenvolvimento**
+
+- **vite** ^7.1.7 - Build tool e servidor dev
+- **@vitejs/plugin-react** ^5.0.4 - Plugin React para Vite
+- **@tailwindcss/vite** ^4.1.17 - Plugin Vite para Tailwind v4
+- **eslint** ^9.36.0 - Linting de código
+- **gh-pages** ^6.3.0 - Deploy automático para GitHub Pages
 
 ## ⚡ Scripts Disponíveis
 
 No diretório do projeto, você pode executar:
 
 ### `npm run dev`
+
 Executa a aplicação em modo de desenvolvimento.\
 Abra [http://localhost:5173](http://localhost:5173) para visualizá-la no navegador.
 
@@ -96,25 +103,35 @@ A página será recarregada automaticamente quando você fizer alterações.\
 Você também verá erros de lint no console.
 
 ### `npm run build`
+
 Compila a aplicação para produção na pasta `dist`.\
 Otimiza o build para melhor performance.
 
 ### `npm run preview`
+
 Serve a versão de produção localmente para preview.\
 Execute após `npm run build` para testar a versão final.
 
 ### `npm run lint`
+
 Executa o ESLint para verificar problemas no código.\
 Ajuda a manter a qualidade e consistência do código.
 
+### `npm run deploy`
+
+Compila e faz deploy automático da aplicação para GitHub Pages.\
+O script `predeploy` executa automaticamente o build antes do deploy.
+
 ## 📁 Estrutura do Projeto
 
-```
-page-mnc/
+```text
+landing-page-MNC/
 ├── public/                 # Arquivos estáticos
 ├── src/
 │   ├── assets/            # Imagens, ícones e outros recursos
-│   │   └── about.jpg      # Imagem da seção sobre
+│   │   ├── about.jpg      # Imagem da seção sobre
+│   │   ├── hero-bg.jpg    # Background da hero section
+│   │   └── icon.png       # Ícone do site
 │   ├── components/        # Componentes reutilizáveis
 │   │   ├── About.jsx      # Seção sobre com FAQ e estatísticas
 │   │   ├── Contact.jsx    # Formulário de contato e informações
@@ -129,9 +146,10 @@ page-mnc/
 │   │   └── index.jsx      # Página principal
 │   ├── index.css          # Estilos globais e configuração do Tailwind CSS v4
 │   └── main.jsx           # Ponto de entrada da aplicação
+├── dist/                  # Build de produção (gerado automaticamente)
 ├── index.html             # Template HTML
 ├── package.json           # Dependências e scripts
-├── vite.config.js         # Configuração do Vite
+├── vite.config.js         # Configuração do Vite com base path para GitHub Pages
 └── eslint.config.js       # Configuração do ESLint
 ```
 
@@ -284,16 +302,27 @@ const { staggerContainer, fadeInUp, fadeInLeft, staggerChild } = useScrollAnimat
 
 ## 🚀 Deploy
 
-### Vercel (Recomendado)
-1. Instale a CLI da Vercel: `npm i -g vercel`
-2. Execute: `vercel`
-3. Siga as instruções
+### GitHub Pages (Configurado)
 
-### Netlify
-1. Execute: `npm run build`
-2. Faça upload da pasta `dist` no Netlify
+O projeto já está configurado para deploy automático no GitHub Pages:
+
+1. **Deploy Automático**:
+   ```bash
+   npm run deploy
+   ```
+
+2. **Deploy Manual**:
+   ```bash
+   npm run build
+   git add dist -f
+   git commit -m "Deploy build"
+   git subtree push --prefix dist origin gh-pages
+   ```
+
+O site estará disponível em: `https://nazaponatech.github.io/landing-page-MNC/`
 
 ### Outros serviços
+
 A pasta `dist` gerada pelo comando `npm run build` pode ser servida por qualquer servidor web estático.
 
 ## 🤝 Contribuição
@@ -331,6 +360,28 @@ Se você encontrar algum problema ou tiver dúvidas:
 - **Animações**: As animações são otimizadas para performance, mas podem ser desabilitadas em `prefers-reduced-motion`
 - **Imagens**: Use formatos modernos (WebP/AVIF) para melhor performance
 - **Build**: Execute `npm run build` para versão otimizada de produção
+- **Deploy**: Deploy automático otimizado para GitHub Pages com configuração de base path
+
+## 🔄 Atualizações Recentes
+
+### Versão Atual (Novembro 2025)
+
+✨ **Novas Funcionalidades:**
+- **Deploy Automático**: Configuração completa para GitHub Pages com script `npm run deploy`
+- **Otimizações de Build**: Base path configurado no Vite para funcionar corretamente no GitHub Pages
+- **Estrutura Simplificada**: Projeto movido para raiz do repositório para melhor organização
+
+🔧 **Melhorias Técnicas:**
+- **Dependências Atualizadas**: Framer Motion 12.23.24, Lucide React 0.553.0
+- **GitHub Pages Integration**: Script predeploy automático e configuração otimizada
+- **Vite Configuration**: Base path `/landing-page-MNC/` para deploy correto
+
+📦 **Dependências Adicionadas:**
+- `gh-pages@^6.3.0` - Para deploy automático no GitHub Pages
+
+🚀 **Deploy Simplificado:**
+- Um comando: `npm run deploy` faz build e deploy automaticamente
+- Site disponível em: `https://nazaponatech.github.io/landing-page-MNC/`
 
 ## 📚 Recursos Úteis
 
@@ -346,7 +397,7 @@ Se você encontrar algum problema ou tiver dúvidas:
 
 ## 📄 Sobre o Projeto
 
-Esta landing page foi desenvolvida para apresentar de forma moderna e profissional a missão do **Ministério de Compaixão da Igreja do Nazareno**. 
+Esta landing page foi desenvolvida para apresentar de forma moderna e profissional a missão do **Ministério de Compaixão da Igreja do Nazareno**.
 
 O projeto demonstra o uso de tecnologias modernas de desenvolvimento web, incluindo React 19, Tailwind CSS v4 e Framer Motion, resultando em uma experiência de usuário fluida e responsiva.
 
