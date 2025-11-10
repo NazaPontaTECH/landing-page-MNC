@@ -39,6 +39,7 @@ export default function About() {
               className="w-24 h-1 bg-primary rounded-full"
               initial={{ width: 0 }}
               whileInView={{ width: 96 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             ></motion.div>
           </motion.div>
@@ -68,6 +69,7 @@ export default function About() {
                 className="w-1 h-12 bg-primary rounded-full"
                 initial={{ height: 0 }}
                 whileInView={{ height: 48 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               ></motion.div>
               <h3 className="text-2xl font-bold text-gray-900">Nossa História</h3>
@@ -101,6 +103,7 @@ export default function About() {
                   className="text-2xl font-bold text-primary mb-1"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   115+
@@ -116,6 +119,7 @@ export default function About() {
                   className="text-2xl font-bold text-primary mb-1"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 1.0 }}
                 >
                   1000+
@@ -133,6 +137,7 @@ export default function About() {
               className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3"
               initial={{ rotate: 0, opacity: 0 }}
               whileInView={{ rotate: 3, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             ></motion.div>
             <motion.img 
@@ -141,6 +146,7 @@ export default function About() {
               className="relative rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full h-auto object-cover"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
           </motion.div>

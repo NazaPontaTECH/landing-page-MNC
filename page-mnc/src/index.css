@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Importa os estilos base do Preline */
+@source "preline/dist/*.js";
 @import "preline/variants.css";
 
 /* Smooth scrolling global */

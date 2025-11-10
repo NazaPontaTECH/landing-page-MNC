@@ -1,6 +1,9 @@
-import { Heart, Menu } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Navbar() {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	// Função para scroll suave
 	const smoothScrollTo = (elementId) => {
 		const element = document.getElementById(elementId);
@@ -19,6 +22,12 @@ export default function Navbar() {
 	const handleNavClick = (e, targetId) => {
 		e.preventDefault();
 		smoothScrollTo(targetId);
+		setIsMenuOpen(false); // Fecha o menu após clique
+	};
+
+	// Toggle do menu
+	const toggleMenu = () => {
+		setIsMenuOpen(!isMenuOpen);
 	};
 
 	return (
@@ -88,61 +97,112 @@ export default function Navbar() {
 						Acessar Sistema
 					</a>
 
-					{/* Menu Mobile - Preline Dropdown */}
-					<div className="md:hidden">
-						<div className="hs-dropdown relative inline-flex">
-							<button 
-								type="button" 
-								className="hs-dropdown-toggle p-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
-								aria-haspopup="menu" 
-								aria-expanded="false" 
-								aria-label="Menu"
-							>
-								<Menu className="w-4 h-4" />
-							</button>
-
-							<div className="hs-dropdown-menu transition-opacity duration-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-2 mt-2" role="menu" aria-orientation="vertical">
-								<a 
-									className="relative flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 cursor-pointer transition-colors group" 
-									href="#inicio"
-									onClick={(e) => handleNavClick(e, 'inicio')}
-								>
-									Início
-									<span className="absolute bottom-1 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-								</a>
-								<a 
-									className="relative flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 cursor-pointer transition-colors group" 
-									href="#sobre"
-									onClick={(e) => handleNavClick(e, 'sobre')}
-								>
-									Sobre
-									<span className="absolute bottom-1 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-								</a>
-								<a 
-									className="relative flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 cursor-pointer transition-colors group" 
-									href="#missao"
-									onClick={(e) => handleNavClick(e, 'missao')}
-								>
-									Missão
-									<span className="absolute bottom-1 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-								</a>
-								<a 
-									className="relative flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 cursor-pointer transition-colors group" 
-									href="#contato"
-									onClick={(e) => handleNavClick(e, 'contato')}
-								>
-									Contato
-									<span className="absolute bottom-1 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-								</a>
-								<div className="border-t border-gray-200 my-2"></div>
-								<a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-primary font-medium hover:bg-gray-100 transition-colors" href="/login">
-									Acessar Sistema
-								</a>
-							</div>
-						</div>
-					</div>
+					{/* Botão do Menu Mobile */}
+					<button
+						onClick={toggleMenu}
+						className="md:hidden p-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
+						aria-label="Menu"
+					>
+						{isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+					</button>
 				</div>
 			</nav>
+
+			{/* Menu Mobile Lateral */}
+			<div className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+				isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+			}`}>
+				{/* Overlay */}
+				<div 
+					className={`fixed inset-0 bg-black transition-opacity duration-300 ${
+						isMenuOpen ? 'bg-opacity-50' : 'bg-opacity-0'
+					}`}
+					onClick={() => setIsMenuOpen(false)}
+				></div>
+				
+				{/* Menu lateral */}
+				<div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+				}`}>
+					{/* Header do menu */}
+					<div className="flex items-center justify-between p-6 border-b border-gray-200">
+						<div className="flex items-center gap-2">
+							<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+								<Heart className="w-5 h-5 text-white" fill="currentColor" />
+							</div>
+							<div>
+								<h2 className="font-semibold text-gray-800 text-sm">Ministério de Compaixão</h2>
+								<p className="text-xs text-gray-500">Igreja do Nazareno</p>
+							</div>
+						</div>
+						<button
+							onClick={() => setIsMenuOpen(false)}
+							className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+						>
+							<X className="w-5 h-5" />
+						</button>
+					</div>
+
+					{/* Links do menu */}
+					<nav className="py-6">
+						<ul className="space-y-2">
+							<li>
+								<a
+									href="#inicio"
+									onClick={(e) => handleNavClick(e, 'inicio')}
+									className="flex items-center px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-primary transition-colors group"
+								>
+									<span className="font-medium">Início</span>
+									<span className="ml-auto w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+								</a>
+							</li>
+							<li>
+								<a
+									href="#sobre"
+									onClick={(e) => handleNavClick(e, 'sobre')}
+									className="flex items-center px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-primary transition-colors group"
+								>
+									<span className="font-medium">Sobre</span>
+									<span className="ml-auto w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+								</a>
+							</li>
+							<li>
+								<a
+									href="#missao"
+									onClick={(e) => handleNavClick(e, 'missao')}
+									className="flex items-center px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-primary transition-colors group"
+								>
+									<span className="font-medium">Missão</span>
+									<span className="ml-auto w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+								</a>
+							</li>
+							<li>
+								<a
+									href="#contato"
+									onClick={(e) => handleNavClick(e, 'contato')}
+									className="flex items-center px-6 py-3 text-gray-800 hover:bg-gray-50 hover:text-primary transition-colors group"
+								>
+									<span className="font-medium">Contato</span>
+									<span className="ml-auto w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+								</a>
+							</li>
+						</ul>
+
+						{/* Divider */}
+						<div className="border-t border-gray-200 my-4"></div>
+
+						{/* Botão de acesso */}
+						<div className="px-6">
+							<a
+								href="/login"
+								className="w-full bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300 text-center block"
+							>
+								Acessar Sistema
+							</a>
+						</div>
+					</nav>
+				</div>
+			</div>
 		</header>
 	);
 }
